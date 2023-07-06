@@ -53,6 +53,6 @@ def login_via_email(username, password):
     driver.quit()
 
 
-username = "ahmed.ukasha@jibb.ai"
-password = "workOmania@1212"
+username = ""
+password = ""
 login_via_email(username, password)
