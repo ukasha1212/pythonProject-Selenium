@@ -15,6 +15,14 @@ def capture_screenshot(webdriver, file_path):
         print("error occured wihile taking screenshot", str(e))
 
 
+def capture_console_logs(webdriver, file_path):
+    if driver is not None:
+        logs = webdriver.get_log("browser")
+        with open(file_path, "w") as file:
+            for log in logs:
+                file.write(str(log) + "/n")
+
+
 def login_via_email(username, password):
     global driver
     try:
@@ -26,7 +34,7 @@ def login_via_email(username, password):
 
         # printing title of our driver to confirm that we reached the requested page.
 
-        print(driver.title)
+        assert "JIBB" in driver.title
 
         # Assigning the web element from webpage to local Web-element
         user_name = driver.find_element(By.ID, "username")
@@ -49,10 +57,11 @@ def login_via_email(username, password):
 
     except Exception as e:
         capture_screenshot(driver, "error_screenshot.png")
+        capture_console_logs(driver, "console_logs")
         print("Error occurred:", str(e))
     driver.quit()
 
 
-username = "ahmed.ukasha@jibb.ai"
-password = "workOmania@1212"
+username = " "
+password = " "
 login_via_email(username, password)
